@@ -1,0 +1,15 @@
+<% if current_user %>
+  <p>current user: <%= current_user.name%></p>
+
+  <a href="/game/create">Create new game</a>
+
+  <% @games.each do |game|%>
+    <div class="video">
+      <p><%= game.title %></p>
+      <p><a href="/game/<%= game.id %>/play/new">play</a></p>
+      <p><a href="/game/<%= game.id %>/edit">edit</a></p>
+
+    </div>
+  <% end %>
+
+<% end %>
