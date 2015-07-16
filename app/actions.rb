@@ -17,8 +17,7 @@ post '/signup' do
     name: params[:name],
     email: params[:email],
     password:  params[:password],
-    avatar: params[:avatar]
-    
+    avatar: params[:avatar] 
   )
   @user.save
   redirect '/'
@@ -30,7 +29,8 @@ end
 
 post '/login' do  
   if User.find_by(email: params[:email], password: params[:password])  
-    session[:email] = params[:email] 
+    session[:email] = params[:email]
+    session[:id] = User.find_by(email: params[:email], password: params[:password]).id 
     #binding.pry
     redirect to('/')
   else
@@ -40,5 +40,22 @@ end
 
 get '/logout' do
   session.clear
+  #binding.pry
   redirect to('/login')
+end
+
+get "/upload_image" do
+  erb :'img/form'
+end
+ 
+post '/save_image' do
+  
+  @filename = params[:file][:filename]
+  file = params[:file][:tempfile]
+ 
+  File.open("./public/#{@filename}", 'wb') do |f|
+    f.write(file.read)
+  end
+  
+  erb :'img/show_image'
 end
