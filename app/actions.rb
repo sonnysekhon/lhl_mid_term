@@ -5,9 +5,9 @@
 
 helpers do
   def current_user
-    if session[:user_id]
+    if session[:id]
       if @current_user.nil?
-        @current_user = User.find_by(session[:user_id])
+        @current_user = User.find(session[:id])
       end
     end
     @current_user
@@ -31,7 +31,7 @@ post '/signup' do
     avatar: params[:avatar] 
   )
   user.save
-  session[:user_id] = user.id
+  #session[:user_id] = user.id
   redirect '/'
 end
 
@@ -39,12 +39,13 @@ get '/login' do
   erb :'login/index'
 end
 
-post '/login' do  
-  if User.find_by(email: params[:email], password: params[:password])  
-    session[:email] = params[:email]
-    session[:id] = User.find_by(email: params[:email], password: params[:password]).id 
-    #binding.pry
-    redirect to('/')
+post '/login' do
+  user = User.find_by(email: params[:email], password: params[:password])
+  if user
+    session[:email] = user.email
+    session[:id] = user.id 
+    # binding.pry
+    redirect to('/dash')
   else
     erb :index
   end
@@ -68,6 +69,7 @@ post '/game/create' do
 
   )
   @a_game.user_id = current_user.id
+  #binding.pry
   @a_game.save
   redirect '/dash'
 end
