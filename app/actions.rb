@@ -28,8 +28,7 @@ post '/signup' do
     name: params[:name],
     email: params[:email],
     password:  params[:password],
-    avatar: params[:avatar]
-    
+    avatar: params[:avatar] 
   )
   user.save
   session[:user_id] = user.id
@@ -40,33 +39,14 @@ get '/login' do
   erb :'login/index'
 end
 
-# post '/login' do  
-#  if User.find_by(email: params[:email], password: params[:password])  
-#    session[:email] = params[:email]
-#    session[:id] = User.find_by(email: params[:email], password: params[:password]).id 
-#    #binding.pry
-#    redirect to('/dash')
-#  else
-#   @message = "login failed"
-#    erb :'login/index'
-#  end 
-# end
 post '/login' do  
-  # if User.find_by(email: params[:email], password: params[:password])  
-  #   session[:email] = params[:email] 
-  #   #binding.pry
-  #   redirect to('/dash')
-  # else
-  #   erb :index
-  # end 
-  user = User.find_by(email: params[:email])
-
-  if user && user.password == params[:password]
-    session[:user_id] = user.id
-    redirect '/dash'
+  if User.find_by(email: params[:email], password: params[:password])  
+    session[:email] = params[:email]
+    session[:id] = User.find_by(email: params[:email], password: params[:password]).id 
+    #binding.pry
+    redirect to('/')
   else
-    @message = "login failed"
-    erb :'login/index'
+    erb :index
   end
 end
 
@@ -93,11 +73,12 @@ post '/game/create' do
 end
 get '/logout' do
   session.clear
+  #binding.pry
   redirect to('/login')
 end
 
 get "/upload_image" do
- erb :form
+  erb :'img/form'
 end
 
 post '/save_image' do
@@ -109,5 +90,7 @@ post '/save_image' do
    f.write(file.read)
  end
  
- erb :show_image
+ erb :'img/show_image'
+
 end
+ 
