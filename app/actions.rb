@@ -31,9 +31,8 @@ end
 post '/login' do  
   if User.find_by(email: params[:email], password: params[:password])  
     session[:email] = params[:email] 
-    binding.pry
+    #binding.pry
     redirect to('/')
-
   else
     erb :index
   end 
