@@ -1,14 +1,10 @@
-<html>
-  <% @users.each_slice(3) do |slice| %>
-    <div class="users_slice">
-      <% slice.each do |user| %>
+<form action="/test" method="POST">
+  <% @users.each do |user| %>
+    <button class ="hidden_btn" name ="test1" type="submit" value ="<%=user.id%>">
       <div class="users_div">
         <h3><%= user.name %><small></small></h3>
         <img src = "/<%= user.avatar %>" height="100" width="100"/>
       </div>
-      <% end %>
-      <div style="clear: both"><!-- --></div>
-    </div>
+    </button> 
   <% end %>
-</html>
-
+</form>

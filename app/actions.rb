@@ -156,6 +156,11 @@ get "/test" do
   erb :test
 end
 
+post "/test" do
+  clicked_id = params[:test1].to_i
+  
+end
+
 post '/save_image' do
  
  @filename = params[:file][:filename]
