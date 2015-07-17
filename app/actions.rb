@@ -73,6 +73,74 @@ post '/game/create' do
   @a_game.save
   redirect '/dash'
 end
+
+get '/game/:id' do
+  @a_game = Game.find(params[:id])
+  @cards = @a_game.cards
+  erb :'game/info'
+end
+
+get '/game/:id/edit' do
+  @a_game = Game.find(params[:id])
+  #binding.pry
+  erb :'game/edit'
+end
+
+put '/game/:id/update' do
+  @a_game = Game.find(params[:id])
+  @a_game.update(title: params[:title], health: params[:health], deck_size: params[:deck_size], hand_size: params[:hand_size])
+  
+  if @a_game.save
+  #binding.pry
+  
+    redirect "/game/#{@a_game.id}"
+  else
+    erb :'game/edit'
+  end
+end
+
+get '/game/:id/cards/new' do
+  @a_game = Game.find(params[:id])
+  @a_card = Card.new
+  erb :'game/card/create'
+end
+
+post '/game/:id/cards/new' do
+  @a_game = Game.find(params[:id])
+  @a_card = Card.new(
+  name: params[:name],
+  picture: params[:picture],
+  attack: params[:attack],
+  defense: params[:defense]
+  )
+  @a_card.game_id = @a_game.id
+  @a_card.save
+  redirect "/game/#{@a_game.id}"
+end
+
+
+
+get '/game/:game_id/cards/:id/edit' do
+  @a_game = Game.find_by( id: params[:game_id] )
+  @cards = @a_game.cards
+  @a_card = @cards.find(params[:id])
+  erb :'game/card/edit'
+  
+end
+
+put '/game/:game_id/cards/:id/update' do
+  @a_game = Game.find_by( id: params[:game_id] )
+  @cards = @a_game.cards
+  @a_card = @cards.find(params[:id])
+  @a_card.update(name: params[:name], picture: params[:picture], attack: params[:attack], defense: params[:defense])
+  if @a_card.save
+    redirect "/game/#{@a_game.id}"
+  else
+    erb :'game/card/edit'
+  end
+end
+
+
 get '/logout' do
   session.clear
   #binding.pry

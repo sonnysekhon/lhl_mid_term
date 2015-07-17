@@ -1,0 +1,4 @@
+<form method="post" action="/game/<%= @a_game.id %>/cards/<%= @a_card.id%>/update">
+<input type="hidden" name="_method" value="put">
+<%=  erb :'game/card/_form' %>
+</form>
