@@ -4,10 +4,10 @@
   <a href="/game/create">Create new game</a>
 
   <% @games.each do |game|%>
-    <div class="video">
+    <div class="game">
       <p><%= game.title %></p>
       <p><a href="/game/<%= game.id %>/play/new">play</a></p>
-      <p><a href="/game/<%= game.id %>/edit">edit</a></p>
+      <p><a href="/game/<%= game.id%>">info</a></p>
 
     </div>
   <% end %>

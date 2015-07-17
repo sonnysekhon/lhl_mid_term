@@ -1,0 +1,12 @@
+<h2>Game info</h2>
+
+<p><a href="/game/<%= @a_game.id %>/edit">Edit game</a></p>
+
+<h2>Cards</h2>
+<p><a href="/game/<%= @a_game.id %>/cards/new">Create new card </a></p>
+<% @cards.each do |card| %>
+  <div class="card">
+    <p><%= card.name %></p>
+    <p><a href="/game/<%= card.game_id %>/cards/<%= card.id %>/edit">Edit card</a></p>
+  </div>
+<% end %>
