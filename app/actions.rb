@@ -83,6 +83,11 @@ get "/upload_image" do
   erb :'img/form'
 end
 
+get "/test" do
+  @users = User.all
+  erb :test
+end
+
 post '/save_image' do
  
  @filename = params[:file][:filename]

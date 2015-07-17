@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+  /*background-image:url('/img/background.jpg');*/
+  background-color: #83d0c9;
+}
+
+form { 
+margin: 0 auto; 
+width:250px;
+text-align: center;
+}
+
+/*nav {
+   position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+}*/
+
+body { 
+  padding-top: 70px; 
+  padding-bottom: 70px; 
+}
+
+.users_slice {
+  margin: 0px auto;
+  width: 500px;
+}
+
+.users_div {
+    padding: 10px;
+    margin: 5px;
+    /*margin: 0px auto 0px auto;*/
+    background-color: #54b2a9;
+    /*margin: 0 auto;*/
+    text-align: center;
+    border-radius: 20px;
+    /*height :250px;*/
+    /*width :150px;*/
+    float:left;
+}
+
+.users_div h3 { margin: 10px; }
