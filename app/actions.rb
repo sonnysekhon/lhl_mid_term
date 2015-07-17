@@ -31,8 +31,8 @@ post '/signup' do
     avatar: params[:avatar] 
   )
   user.save
-  #session[:user_id] = user.id
-  redirect '/'
+  session[:id] = user.id
+  redirect '/dash'
 end
 
 get '/login' do

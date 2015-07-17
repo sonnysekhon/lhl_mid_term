@@ -2,19 +2,19 @@
   <input type="hidden" name="_method" value="put">
   <div>
     <label>Game Title:</label>
-    <input type="text" name="title" value="">
+    <input type="text" name="title" value="<%= @a_game.title%>">
   </div>
   <div>
     <label>Health:</label>
-    <input type="text" name="health" value="">
+    <input type="text" name="health" value="<%= @a_game.health%>">
   </div>
   <div>
     <label>Number of Cards in a deck:</label>
-    <input type="text" name="deck_size" value="">
+    <input type="text" name="deck_size" value="<%= @a_game.deck_size%>">
   </div>
   <div>
     <label>Number of Cards on hand:</label>
-    <input type="text" name="hand_size" value="">
+    <input type="text" name="hand_size" value="<%= @a_game.hand_size%>">
   </div>
   <div><input type="submit" value="Submit"></div>
 </form>
