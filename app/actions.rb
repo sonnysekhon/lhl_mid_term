@@ -160,7 +160,18 @@ end
 
 post "/test" do
   clicked_id = params[:test1].to_i
+end
 
+post "/click_player1" do
+  active_card_id = params[:card].to_i
+  play(active_card_id)
+  # redirect to('/board/1/player1')
+end
+
+post "/click_player2" do
+  active_card_id = params[:card].to_i
+  play(active_card_id)
+  # redirect to('/board/1/player2')
 end
 
 post '/save_image' do

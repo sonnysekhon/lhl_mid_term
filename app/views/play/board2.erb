@@ -101,6 +101,7 @@
 
   </div>
   <div class="col-xs-8" id="player_cards">
+  <form action="/click_player2" method="POST">
     <% hand = show_hand(ActiveGame.find(@id).player2_id)%>
     <% hand.each do |card| %>
     <button class ="hidden_btn" name ="card" type="submit" value ="<%= card[0] %>">
@@ -112,6 +113,7 @@
       </div>
     </button>
   <% end %>
+  </form>
   </div>
 
 
