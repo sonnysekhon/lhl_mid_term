@@ -1,3 +1,11 @@
+<% if turn?(@id) == 1 %>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('button[type="submit"]').attr('disabled','disabled');
+    });
+  </script>
+<% end %>
+
 <div class="row" id="hud">
 
   <div class="col-xs-4" id="enemy_hud">

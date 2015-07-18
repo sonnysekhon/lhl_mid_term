@@ -1,3 +1,11 @@
+<% if turn?(@id) == 2 %>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('button[type="submit"]').attr('disabled','disabled');
+    });
+  </script>
+<% end %>
+
 <div class="row" id="hud">
 
   <div class="col-xs-4" id="enemy_hud">
@@ -93,6 +101,7 @@
 
   </div>
   <div class="col-xs-8" id="player_cards">
+  <form name="form1" action="/test" method="POST">
     <% hand = show_hand(ActiveGame.find(@id).player1_id)%>
     <% hand.each do |card| %>
     <button class ="hidden_btn" name ="card" type="submit" value ="<%= card[0] %>">
@@ -108,5 +117,6 @@
       </div>
     </button>
   <% end %>
+  </form>
   </div>
 </div>
