@@ -3,6 +3,9 @@ require 'bundler/setup'
 
 require 'active_support/all'
 
+require 'pusher'
+require 'eventmachine'
+
 # Load Sinatra Framework (with AR)
 require 'sinatra'
 require 'sinatra/activerecord'

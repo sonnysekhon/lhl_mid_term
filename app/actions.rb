@@ -3,6 +3,8 @@
 #   enable :sessions
 # end
 
+require_relative 'controller/game'
+
 helpers do
   def current_user
     if session[:id]
@@ -28,7 +30,7 @@ post '/signup' do
     name: params[:name],
     email: params[:email],
     password:  params[:password],
-    avatar: params[:avatar] 
+    avatar: params[:avatar]
   )
   user.save
   session[:id] = user.id
@@ -43,7 +45,7 @@ post '/login' do
   user = User.find_by(email: params[:email], password: params[:password])
   if user
     session[:email] = user.email
-    session[:id] = user.id 
+    session[:id] = user.id
     # binding.pry
     redirect to('/dash')
   else
@@ -89,10 +91,10 @@ end
 put '/game/:id/update' do
   @a_game = Game.find(params[:id])
   @a_game.update(title: params[:title], health: params[:health], deck_size: params[:deck_size], hand_size: params[:hand_size])
-  
+
   if @a_game.save
   #binding.pry
-  
+
     redirect "/game/#{@a_game.id}"
   else
     erb :'game/edit'
@@ -125,7 +127,7 @@ get '/game/:game_id/cards/:id/edit' do
   @cards = @a_game.cards
   @a_card = @cards.find(params[:id])
   erb :'game/card/edit'
-  
+
 end
 
 put '/game/:game_id/cards/:id/update' do
@@ -158,19 +160,18 @@ end
 
 post "/test" do
   clicked_id = params[:test1].to_i
-  
+
 end
 
 post '/save_image' do
- 
+
  @filename = params[:file][:filename]
  file = params[:file][:tempfile]
 
  File.open("./public/#{@filename}", 'wb') do |f|
    f.write(file.read)
  end
- 
+
  erb :'img/show_image'
 
 end
- 

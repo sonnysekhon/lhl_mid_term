@@ -12,6 +12,9 @@ gem 'puma'
 gem 'tux'
 gem 'byebug'
 
+gem 'pusher'
+gem 'eventmachine'
+
 group :development, :test do
   gem 'pry'
   gem 'shotgun'
