@@ -22,6 +22,8 @@ GEM
       columnize (= 0.9.0)
     coderay (1.1.0)
     columnize (0.9.0)
+    eventmachine (1.0.7)
+    httpclient (2.6.0.1)
     i18n (0.7.0)
     json (1.8.3)
     method_source (0.8.2)
@@ -32,6 +34,10 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     puma (2.12.0)
+    pusher (0.14.5)
+      httpclient (~> 2.5)
+      multi_json (~> 1.0)
+      signature (~> 0.1.8)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
@@ -48,6 +54,7 @@ GEM
       ripl (>= 0.7.0)
     shotgun (0.9.1)
       rack (>= 1.0)
+    signature (0.1.8)
     sinatra (1.4.6)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -80,8 +87,10 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   byebug
+  eventmachine
   pry
   puma
+  pusher
   rake
   shotgun
   sinatra
@@ -89,3 +98,6 @@ DEPENDENCIES
   sinatra-contrib
   sqlite3
   tux
+
+BUNDLED WITH
+   1.10.5
