@@ -160,7 +160,11 @@ end
 
 post "/test" do
   clicked_id = params[:test1].to_i
+end
 
+post "/test2" do
+  clicked_id = params[:test].to_i
+  binding.pry
 end
 
 post '/save_image' do

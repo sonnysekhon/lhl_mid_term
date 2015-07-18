@@ -97,10 +97,14 @@
     <% hand.each do |card| %>
     <button class ="hidden_btn" name ="card" type="submit" value ="<%= card[0] %>">
       <div class="users_div">
+      <form action="/test2" method="POST">
+      <button class ="hidden_btn" name ="test" type="submit" value ="<%= card[0] %>">
         <h3><%= Card.find(card[1]).name %><small></small></h3>
         <img src = "/<%= Card.find(card[1]).picture %>" height="100" width="100"/>
         <p>Attack: <%= ActiveCard.find(card[0]).attack %></p>
         <p>Health: <%= ActiveCard.find(card[0]).health %></p>
+        </button>
+      </form>
       </div>
     </button>
   <% end %>
