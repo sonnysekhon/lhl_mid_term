@@ -1,4 +1,5 @@
 require_relative 'server_game'
+require 'pusher'
 
 pusher = Pusher::Client.new app_id: '130208', key: '80f3b1aa27d8fa8bf3de', secret: 'dcd4871b115aa9967972'
 
@@ -175,42 +176,12 @@ def create_game(game_id)
   @active_game.id
 end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-get '/join_game' do
-  game.join_game(current_user.id)
-  erb :'play/index'
-end
-
-get '/notification' do
-    pusher.trigger('notifications', 'new_notification', {
-        message: 'hello world'
-    })
-    "Notification triggered!"
-end
-
 post '/notification' do
-  message = params[:message]
-  puts "OMG WTF #{message}"
-
-
+  id = params[:active_game_id]
+  clear_board(id)
+  next_turn(id)
   pusher.trigger('notifications', 'new_notification', {
-    message: message
+    id: id
   })
+  puts "Next Turn Button Press! #{params[:active_game_id]}"
 end
