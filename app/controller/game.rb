@@ -1,6 +1,6 @@
 require_relative 'server_game'
 
-# pusher = Pusher::Client.new app_id: '130208', key: '80f3b1aa27d8fa8bf3de', secret: 'dcd4871b115aa9967972'
+pusher = Pusher::Client.new app_id: '130208', key: '80f3b1aa27d8fa8bf3de', secret: 'dcd4871b115aa9967972'
 
 get '/game/:game_id/play' do
   @id = create_game(params[:game_id])

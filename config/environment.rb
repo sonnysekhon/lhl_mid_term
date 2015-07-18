@@ -3,8 +3,8 @@ require 'bundler/setup'
 
 require 'active_support/all'
 
-# require 'pusher'
-# require 'eventmachine'
+require 'pusher'
+require 'eventmachine'
 
 # Load Sinatra Framework (with AR)
 require 'sinatra'
