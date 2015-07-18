@@ -1,72 +1,7 @@
-<div class="row" id="hud">
+<p>click this link to play!</p>
+<a href = "/board/<%= @id %>/player1"> PLAY! </a>
 
-  <div class="col-xs-4" id="enemy_hud">
 
-    <div class="col-xs-12" id="enemy_name">
-      <center>
-        <h3>Enemy Username</h3>
-      </center>
-    </div>
+<p>Send this link to your opponent! <p>
+<a href = "/board/<%= @id %>/player2"> http://localhost:3000/board/<%= @id %>/player2</a>
 
-    <div class="col-xs-12" id="enemy_stats">
-
-      <div class="col-xs-6" id="enemy_health">
-        <center>
-          <h3>Health: 20</h3>
-        </center>
-      </div>
-
-      <div class="col-xs-6" id="enemy_deck">
-        <center>
-          <h3>Deck Size: 20</h3>
-        </center>
-      </div>
-
-    </div>
-
-  </div>
-
-  <div class="col-xs-8" id="enemy_cards">
-    <h1> ENEMY HAND </h1>
-  </div>
-</div>
-
-<div class="row" id="board">
-  <div class="col-md-12" id='enemy_board'>
-    <h1> ENEMY CARDS IN PLAY </h1>
-  </div>
-  <div class="col-md-12" id='player_board'>
-    <h1> PLAYER CARDS IN PLAY </h1>
-  </div>
-</div>
- <!-- PLAYER HEADS UP DISPLAY -->
-<div class="row" id='hud'>
-  <div class="col-xs-4" id="player_hud">
-
-    <div class="col-xs-12" id="player_name">
-      <center>
-        <h3><%= current_user.name %></h3>
-      </center>
-    </div>
-
-    <div class="col-xs-12" id="player_stats">
-
-      <div class="col-xs-6" id="player_health">
-        <center>
-          <h3>Health: 20</h3>
-        </center>
-      </div>
-
-      <div class="col-xs-6" id="player_health">
-        <center>
-          <h3> Deck Size: 20 </h3>
-        </center>
-      </div>
-
-    </div>
-
-  </div>
-  <div class="col-xs-8" id="player_cards">
-  <h3> PLAYER CARDS </h3>
-  </div>
-</div>

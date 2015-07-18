@@ -2,13 +2,27 @@ require_relative 'server_game'
 
 # pusher = Pusher::Client.new app_id: '130208', key: '80f3b1aa27d8fa8bf3de', secret: 'dcd4871b115aa9967972'
 
-get '/play' do
-  create_game(params[:game_id])
+get '/game/:game_id/play' do
+  @id = create_game(params[:game_id])
   erb :'play/index'
+end
+
+get '/board/:active_game_id/player1' do
+  @id = params[:active_game_id]
+  erb :'play/board1'
+end
+
+get '/board/:active_game_id/player2' do
+  @id = params[:active_game_id]
+  erb :'play/board2'
 end
 
   def player_health(player_id)
     Player.find(player_id).player_health
+  end
+
+  def deck_size(player_id)
+    Player.find(player_id).active_cards.where("status = 'deck'").count
   end
 
   def draw(player_id)
@@ -156,6 +170,8 @@ def create_game(game_id)
     card.status = "hand"
     card.save
   end
+
+  @active_game.id
 end
 
 
