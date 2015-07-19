@@ -1,10 +1,12 @@
+<a class="waves-effect waves-teal btn-flat" href="/dash">  << BACK </a>
+<div class="container">
 <h2>Game info</h2>
 <p>Title: <%= @a_game.title%></p>
 <p>Player Health: <%= @a_game.health%></p>
 <p>Number of cards in deck: <%= @a_game.deck_size%></p>
 <p>Number of Card on player Hand: <%= @a_game.hand_size%></p>
 
-  
+
 <p><a href="/game/<%= @a_game.id %>/edit">Edit game</a></p>
 
 <h2>Cards</h2>
@@ -15,3 +17,4 @@
     <p><a href="/game/<%= card.game_id %>/cards/<%= card.id %>/edit">Edit card</a></p>
   </div>
 <% end %>
+</div>

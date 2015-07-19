@@ -2,120 +2,109 @@
   <script type="text/javascript">
     $(document).ready(function(){
       $('button[type="submit"]').attr('disabled','disabled');
+      $('input[type="submit"]').attr('disabled', 'disabled');
     });
   </script>
 <% end %>
 
+<% @activegame = ActiveGame.find(@id) %>
+
+<!-- ENEMY STATS -->
+
 <div class="row" id="hud">
-
-  <div class="col-xs-4" id="enemy_hud">
-
-    <div class="col-xs-12" id="enemy_name">
-      <center>
-        <h3>Enemy Username</h3>
-      </center>
-    </div>
-
-    <div class="col-xs-12" id="enemy_stats">
-
-      <div class="col-xs-6" id="enemy_health">
-        <center>
-          <h3>Health: <%= player_health(ActiveGame.find(@id).player1_id)%></h3>
-        </center>
-      </div>
-
-      <div class="col-xs-6" id="enemy_deck">
-        <center>
-          <h3>Deck Size: <%= deck_size(ActiveGame.find(@id).player1_id)%></h3>
-        </center>
-      </div>
-
-    </div>
-
-  </div>
-
-  <div class="col-xs-8" id="enemy_cards">
-    <% hand = show_hand(ActiveGame.find(@id).player1_id)%>
+  <div class="card-panel red " id="enemy_name">
+    <center>
+    <h5 class="card-content white-text"><%= current_user.name %> || Health: <%= player_health(@activegame.player1_id)%> || Deck Size: <%= deck_size(@activegame.player1_id)%></h5>
+    <% hand = show_hand(@activegame.player1_id)%>
     <% hand.each do |card| %>
-    <button class ="hidden_btn" name ="card" type="submit" value ="<%= card[0] %>">
-      <div class="users_div">
-      </div>
-    </button>
-  <% end %>
+      <button class ="hidden_btn" name ="card" type="submit" value ="<%= card[0] %>">
+        <div class="card_circle">
+        </div>
+      </button>
+    <% end %>
+    </center>
   </div>
 </div>
+
+<!-- GAME BOARD -->
 
 <div class="row" id="board">
-  <div class="col-md-12" id='enemy_board'>
-    <% board = show_board(ActiveGame.find(@id).player1_id)%>
-    <% board.each do |card| %>
-    <button class ="hidden_btn" name ="card" type="submit" value ="<%= card[0] %>">
-      <div class="users_div">
-        <h3><%= Card.find(card[1]).name %><small></small></h3>
-        <img src = "/<%= Card.find(card[1]).picture %>" height="100" width="100"/>
-        <p>Attack: <%= ActiveCard.find(card[0]).attack %></p>
-        <p>Health: <%= ActiveCard.find(card[0]).health %></p>
-      </div>
-    </button>
-  <% end %>
-  </div>
-  <div class="col-md-12" id='player_board'>
-    <% board = show_board(ActiveGame.find(@id).player2_id)%>
-    <% board.each do |card| %>
-    <button class ="hidden_btn" name ="card" type="submit" value ="<%= card[0] %>">
-      <div class="users_div">
-        <h3><%= Card.find(card[1]).name %><small></small></h3>
-        <img src = "/<%= Card.find(card[1]).picture %>" height="100" width="100"/>
-        <p>Attack: <%= ActiveCard.find(card[0]).attack %></p>
-        <p>Health: <%= ActiveCard.find(card[0]).health %></p>
-      </div>
-    </button>
-  <% end %>
+  <form method="post" action='/board/<%=@id %>/player2/attack'>
+    <div class="col-md-12" id='enemy_board'>
+      <% board = show_board(@activegame.player1_id)%>
+      <div class="row">
+      <% board.each do |card| %>
+        <div class="col s1">
+          <div class="card  red darken-3">
+            <div class="card-content white-text">
+              <center>
+              <img src="/<%= Card.find(card[1]).picture %>" height="50" width="50">
+              <p><%= Card.find(card[1]).name %></p>
+              <p><%= ActiveCard.find(card[0]).attack %>/<%= ActiveCard.find(card[0]).health %></p>
+              <p><input name="target" type="radio" value="<%= card[0] %>" /></p>
+              </center>
+            </div>
+          </div>
+        </div>
+    <% end %>
+     </div>
+    </div>
+    <div class="col-md-12" id='player_board'>
+      <% board = show_board(@activegame.player2_id)%>
+      <% board.each do |card| %>
+        <div class="col s1">
+          <div class="card green darken-2">
+            <div class="card-content white-text">
+              <center>
+              <img src="/<%= Card.find(card[1]).picture %>" height="50" width="50">
+              <p><%= Card.find(card[1]).name %></p>
+              <p><%= ActiveCard.find(card[0]).attack %>/<%= ActiveCard.find(card[0]).health %></p>
+              <p><input name="attacker" type="radio" value="<%= card[0] %>" /></p>
+              </center>
+            </div>
+          </div>
+        </div>
+    <% end %>
+    </div>
+  <input type="submit" value="Attack!">
+  </form>
+</div>
+
+ <!-- PLAYER HAND -->
+
+ <div class="row">
+  <div class="col s12" id="player_cards">
+    <form action="/player2/play_card" method="POST">
+      <% hand = show_hand(@activegame.player2_id)%>
+      <% hand.each do |card| %>
+        <div class="col s1">
+          <div class="card blue-grey lighten-1">
+            <div class="card-content white-text">
+              <center>
+              <img src="/<%= Card.find(card[1]).picture %>" height="50" width="50">
+              <p><%= Card.find(card[1]).name %></p>
+              <p><%= ActiveCard.find(card[0]).attack %>/<%= ActiveCard.find(card[0]).health %></p>
+              <p><button class ="hidden_btn" name ="card" type="submit" value ="<%= card[0] %>">SELECT</button></p>
+              </center>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </form>
   </div>
 </div>
- <!-- PLAYER HEADS UP DISPLAY -->
-<div class="row" id='hud'>
-  <div class="col-xs-4" id="player_hud">
 
-    <div class="col-xs-12" id="player_name">
-      <center>
-        <h3><%= current_user.name %></h3>
-      </center>
-    </div>
+<!-- PLAYER STATS -->
 
-    <div class="col-xs-12" id="player_stats">
-
-      <div class="col-xs-6" id="player_health">
-        <center>
-          <h3>Health: <%= player_health(ActiveGame.find(@id).player2_id)%></h3>
-        </center>
-      </div>
-
-      <div class="col-xs-6" id="player_health">
-        <center>
-          <h3> Deck Size: <%= deck_size(ActiveGame.find(@id).player2_id)%></h3>
-        </center>
-      </div>
-
-    </div>
-
+<div class="row" id="hud">
+  <div class="card-panel teal " id="player_name">
+    <center>
+    <h5 class="card-content white-text"><%= current_user.name %> || Health: <%= player_health(@activegame.player2_id)%> || Deck Size: <%= deck_size(@activegame.player2_id)%></h5>
+    <form method="post" action='/board/<%=@id %>/player2/draw'>
+      <button name="player_id" type="submit" value="<%= @activegame.player2_id %>">DRAW CARD</button>
+    </form>
+    <br>
+    <button class="finish_turn" type="submit" name="active_game_id" value="<%= @id %>">FINISH TURN</button>
+    </center>
   </div>
-  <div class="col-xs-8" id="player_cards">
-  <form action="/player2/play_card" method="POST">
-    <% hand = show_hand(ActiveGame.find(@id).player2_id)%>
-    <% hand.each do |card| %>
-    <button class ="hidden_btn" name ="card" type="submit" value ="<%= card[0] %>">
-      <div class="users_div">
-        <h3><%= Card.find(card[1]).name %><small></small></h3>
-        <img src = "/<%= Card.find(card[1]).picture %>" height="100" width="100"/>
-        <p>Attack: <%= ActiveCard.find(card[0]).attack %></p>
-        <p>Health: <%= ActiveCard.find(card[0]).health %></p>
-      </div>
-    </button>
-  <% end %>
-  </form>
-  </div>
-
-   <button class="finish_turn" type="submit" name="active_game_id" value="<%= @id %>">FINISH TURN</button>
-
 </div>

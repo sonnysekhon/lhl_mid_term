@@ -19,6 +19,46 @@ get '/board/:active_game_id/player2' do
   erb :'play/board2'
 end
 
+post '/board/:id/player1/attack' do
+  @active_game_id = params[:id]
+  @attacker = params[:attacker]
+  @target = params[:target]
+  fight(@attacker, @target)
+  redirect to("board/#{@active_game_id}/player1")
+end
+
+post '/board/:id/player2/attack' do
+  @active_game_id = params[:id]
+  @attacker = params[:attacker]
+  @target = params[:target]
+  fight(@attacker, @target)
+  redirect to("board/#{@active_game_id}/player2")
+end
+
+post '/board/:id/player1/draw' do
+  @active_game_id = params[:id]
+  @player_id = params[:player_id]
+  draw(@player_id)
+  redirect to("board/#{@active_game_id}/player1")
+end
+
+post '/board/:id/player2/draw' do
+  @active_game_id = params[:id]
+  @player_id = params[:player_id]
+  draw(@player_id)
+  redirect to("board/#{@active_game_id}/player2")
+end
+
+post '/notification' do
+  id = params[:active_game_id]
+  clear_board(id)
+  next_turn(id)
+  pusher.trigger('notifications', 'new_notification', {
+    id: id
+  })
+  puts "Next Turn Button Press! #{params[:active_game_id]}"
+end
+
   def player_health(player_id)
     Player.find(player_id).player_health
   end
@@ -120,7 +160,6 @@ end
     end
   end
 
-
 def create_game(game_id)
   @game = Game.find(game_id)
   @active_game = ActiveGame.create(
@@ -174,14 +213,4 @@ def create_game(game_id)
   end
 
   @active_game.id
-end
-
-post '/notification' do
-  id = params[:active_game_id]
-  clear_board(id)
-  next_turn(id)
-  pusher.trigger('notifications', 'new_notification', {
-    id: id
-  })
-  puts "Next Turn Button Press! #{params[:active_game_id]}"
 end
