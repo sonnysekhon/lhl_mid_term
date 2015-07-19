@@ -64,7 +64,7 @@ post '/game/create' do
   )
   @a_game.user_id = current_user.id
   @a_game.save
-  redirect '/dash'
+  redirect "/game/#{@a_game.id}"
 end
 
 get '/game/:id' do

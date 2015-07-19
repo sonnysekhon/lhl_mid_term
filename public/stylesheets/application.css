@@ -28,6 +28,11 @@
   border-radius: 1250px;
 }
 
+.users_slice {
+  margin: 0px auto;
+  width: 500px;
+  float:left;
+}
 
 /*body {
   padding-top: 70px;

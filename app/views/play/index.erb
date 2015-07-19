@@ -1,6 +1,19 @@
-<p>click this link to play!</p>
-<a href = "/board/<%= @id %>/player1"> PLAY! </a>
-
-<p>Send this link to your opponent! <p>
-<a href = "/board/<%= @id %>/player2"> http://localhost:3000/board/<%= @id %>/player2</a>
-
+<div class="container">
+  <br>
+  <h3 class="flow-text">Click This Link To Play!</h3>
+  <a href="/board/<%= @id %>/player1"> 
+    <br>
+    <button class="waves-effect waves-light btn amber accent-3">PLAY</button>
+    <br> 
+  </a>
+  <br>
+  <h3 class="flow-text">Send This Link To A Player!</h3>
+  <br>
+  <div class="container hoverable card">
+    <br>
+    <center>
+    <a class="flow-text" href = "/board/<%= @id %>/player2"> http://localhost:3000/board/<%= @id %>/player2</a>
+    </center>
+    <br>
+  </div>
+</div>
