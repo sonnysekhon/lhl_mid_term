@@ -7,16 +7,22 @@
   </div>
   <div>
     <label>Health:</label>
-    <input type="text" name="health" value="<%= @a_game.health%>">
+    <p class="range-field">
+      <input type="range" name="health" value="<%= @a_game.health%>" min="0" max="20" />
+    </p>
   </div>
   <div>
     <label>Number of Cards in a deck:</label>
-    <input type="text" name="deck_size" value="<%= @a_game.deck_size%>">
+    <p class="range-field">
+      <input type="range" name="deck_size" value="<%= @a_game.deck_size%>" min="0" max="50" />
+    </p>
   </div>
   <div>
     <label>Number of Cards on hand:</label>
-    <input type="text" name="hand_size" value="<%= @a_game.hand_size%>">
+    <p class="range-field">
+       <input type="range" name="hand_size" value="<%= @a_game.hand_size%>" min="0" max="10" />
+    </p>
   </div>
-  <div><input type="submit" value="Submit"></div>
+  <div><button class="waves-effect waves-light btn amber accent-3" type="submit" value="Submit">Submit</button></div>
 </form>
 </div>
