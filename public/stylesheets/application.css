@@ -1,4 +1,8 @@
-body { 
+.left-align {
+  padding-left: 20px;
+}
+
+/*body { 
   padding-top: 70px; 
   padding-bottom: 70px; 
 
@@ -75,3 +79,4 @@ input[type=submit]:active {
 
 
 
+*/

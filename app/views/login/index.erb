@@ -1,13 +1,16 @@
-<form action="/login" method="POST">
-  <h2>Login:</h2>
-  <div>
+<div class="valign-wrapper">
+<div class="row">
+<form class="col s12" action="/login" method="POST">
+  <h3 class="valign"> Login:</h3>
+
+  <div class="row input-field col s6">
   <input type="text" name="email" placeholder="email">
   </div>
-  <h3></h3>
-  <div>
+
+  <div class="row input-field col s6">
   <input type="password" name="password" placeholder="password">
   </div>
-  <h3></h3>
-  <div>
-  <input type="submit" value="Submit">
+  <button class="waves-effect waves-light btn red lighten-2" type="submit" value="Submit">Submit</button>
 </form>
+</div>
+</div>
