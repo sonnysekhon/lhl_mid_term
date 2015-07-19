@@ -28,8 +28,12 @@
           <span class="card-title"><%= game.title %></span>
         </div>
         <div class="card-action amber accent-3">
-          <a style="color: white;"href="/game/<%= game.id %>/play">PLAY<a>
-          <a style="color: white;"href="/game/<%= game.id%>">VIEW<a>
+          <% if game.cards != []%>
+            <a style="color: white;"href="/game/<%= game.id %>/play">PLAY<a> 
+            <a style="color: white;"href="/game/<%= game.id%>">VIEW<a>
+          <% else %>
+            <a style="color: white;"href="/game/<%= game.id%>">VIEW<a>
+          <% end %>
         </div>
       </div>
     </div>
