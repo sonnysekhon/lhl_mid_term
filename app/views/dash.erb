@@ -16,17 +16,22 @@
         </div>
       </div>
     </div>
-    <% @games.each do |game|%>
-     <div class="row">
-      <div class="col s12 m4">
-        <div class="card teal darken-1 hoverable">
-          <div class="card-content white-text">
-            <span class="card-title"><%= game.title %></span>
-          </div>
-          <div class="center card-action amber accent-3">
-            <a style="color: white;"href="/game/<%= game.id %>/play">PLAY<a>
+
+  </div>
+  <% @games.each do |game|%>
+   <div class="row">
+    <div class="col s12 m4">
+      <div class="card teal darken-1">
+        <div class="card-content white-text">
+          <span class="card-title"><%= game.title %></span>
+        </div>
+        <div class="card-action amber accent-3">
+          <% if game.cards != []%>
+            <a style="color: white;"href="/game/<%= game.id %>/play">PLAY<a> 
             <a style="color: white;"href="/game/<%= game.id%>">VIEW<a>
-          </div>
+          <% else %>
+            <a style="color: white;"href="/game/<%= game.id%>">VIEW<a>
+          <% end %>
         </div>
       </div>
     </div>
