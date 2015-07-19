@@ -1,8 +1,3 @@
-# Homepage (Root path)
-# configure do #dont need this
-#   enable :sessions
-# end
-
 require_relative 'controller/game'
 
 helpers do
@@ -25,7 +20,6 @@ get "/signup" do
 end
 
 post '/signup' do
-  #binding.pry
   user = User.new(
     name: params[:name],
     email: params[:email],
@@ -46,7 +40,6 @@ post '/login' do
   if user
     session[:email] = user.email
     session[:id] = user.id
-    # binding.pry
     redirect to('/dash')
   else
     erb :index
@@ -68,10 +61,8 @@ post '/game/create' do
     health: params[:health],
     deck_size: params[:deck_size],
     hand_size: params[:hand_size]
-
   )
   @a_game.user_id = current_user.id
-  #binding.pry
   @a_game.save
   redirect '/dash'
 end
@@ -84,17 +75,13 @@ end
 
 get '/game/:id/edit' do
   @a_game = Game.find(params[:id])
-  #binding.pry
   erb :'game/edit'
 end
 
 put '/game/:id/update' do
   @a_game = Game.find(params[:id])
   @a_game.update(title: params[:title], health: params[:health], deck_size: params[:deck_size], hand_size: params[:hand_size])
-
   if @a_game.save
-  #binding.pry
-
     redirect "/game/#{@a_game.id}"
   else
     erb :'game/edit'
@@ -120,14 +107,11 @@ post '/game/:id/cards/new' do
   redirect "/game/#{@a_game.id}"
 end
 
-
-
 get '/game/:game_id/cards/:id/edit' do
   @a_game = Game.find_by( id: params[:game_id] )
   @cards = @a_game.cards
   @a_card = @cards.find(params[:id])
   erb :'game/card/edit'
-
 end
 
 put '/game/:game_id/cards/:id/update' do
@@ -142,10 +126,8 @@ put '/game/:game_id/cards/:id/update' do
   end
 end
 
-
 get '/logout' do
   session.clear
-  #binding.pry
   redirect to('/login')
 end
 
@@ -162,27 +144,23 @@ post "/test" do
   clicked_id = params[:test1].to_i
 end
 
-post "/click_player1" do
+post "/player1/play_card" do
   active_card_id = params[:card].to_i
   play(active_card_id)
-  # redirect to('/board/1/player1')
+  redirect to ("board/#{Player.find(ActiveCard.find(active_card_id).player_id).active_game_id}/player1")
 end
 
-post "/click_player2" do
+post "/player2/play_card" do
   active_card_id = params[:card].to_i
   play(active_card_id)
-  # redirect to('/board/1/player2')
+  redirect to ("board/#{Player.find(ActiveCard.find(active_card_id).player_id).active_game_id}/player2")
 end
 
 post '/save_image' do
-
  @filename = params[:file][:filename]
  file = params[:file][:tempfile]
-
  File.open("./public/#{@filename}", 'wb') do |f|
    f.write(file.read)
  end
-
  erb :'img/show_image'
-
 end
