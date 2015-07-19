@@ -1,42 +1,35 @@
 <% if current_user %>
-
-<div class="container">
-<h3>Your Game Library:</h3>
-<hr>
-
- <div class="row">
-    <div class="col s12 m4 ">
-      <div class="card blue-grey darken-1 hoverable">
-        <div class="card-content white-text">
-          <span class="card-title">Create New Game!</span>
-          <p>I am a very simple app. I am good at creating cards with attack and health.
-          You can also change player health, deck size, and starting hand count.</p>
-        </div>
-        <div class="card-action amber accent-3">
-          <center>
-          <a style="color: white;"href="game/create">START CREATING!</a>
-          </center>
+  <div class="container">
+  <h4 class ="flow-text">Your Game Library:</h4>
+  <hr>
+    <div class="row">
+      <div class="col s12 m12 ">
+        <div class="card blue-grey darken-1 hoverable">
+          <div class="card-content white-text">
+            <span class="card-title">Create New Game!</span>
+            <p>I am a very simple app. I am good at creating cards with attack and health.
+            You can also change player health, deck size, and starting hand count.</p>
+          </div>
+          <div class="center card-action amber accent-3">
+            <a style="color: white;"href="game/create">START CREATING!</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <% @games.each do |game|%>
-   <div class="row">
-    <div class="col s12 m4">
-      <div class="card teal darken-1 hoverable">
-        <div class="card-content white-text">
-          <span class="card-title"><%= game.title %></span>
-        </div>
-        <div class="card-action amber accent-3">
-          <a style="color: white;"href="/game/<%= game.id %>/play">PLAY<a>
-          <a style="color: white;"href="/game/<%= game.id%>">VIEW<a>
+    <% @games.each do |game|%>
+     <div class="row">
+      <div class="col s12 m4">
+        <div class="card teal darken-1 hoverable">
+          <div class="card-content white-text">
+            <span class="card-title"><%= game.title %></span>
+          </div>
+          <div class="center card-action amber accent-3">
+            <a style="color: white;"href="/game/<%= game.id %>/play">PLAY<a>
+            <a style="color: white;"href="/game/<%= game.id%>">VIEW<a>
+          </div>
         </div>
       </div>
     </div>
+    <% end %>
   </div>
-  <% end %>
-</div>
-
-
-
 <% end %>
