@@ -29,7 +29,7 @@
 <!-- GAME BOARD -->
 
 <div class="row" id="board">
-  <form method="post" action='/board/<%=@id %>/player1/attack'>
+  <form id="attackForm" method="post" action='/board/<%=@id %>/player1/attack'>
     <div class="col-md-12" id='enemy_board'>
       <% board = show_board(@activegame.player2_id)%>
       <div class="row">

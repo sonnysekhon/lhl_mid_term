@@ -19,6 +19,11 @@ get '/board/:active_game_id/player2' do
   erb :'play/board2'
 end
 
+get '/game_over' do
+  @id = params[:id]
+  erb :'game_over/index'
+end
+
 post '/board/:id/player1/attack' do
   @active_game_id = params[:id]
   @attacker = params[:attacker]
@@ -53,9 +58,16 @@ post '/notification' do
   id = params[:active_game_id]
   clear_board(id)
   next_turn(id)
-  pusher.trigger('notifications', 'new_notification', {
-    id: id
-  })
+  if game_over?(id)
+    pusher.trigger('notifications', 'game_over', {
+      id: id
+    })
+    puts "Game is over!"
+  else
+    pusher.trigger('notifications', 'new_notification', {
+      id: id
+    })
+  end
   puts "Next Turn Button Press! #{params[:active_game_id]}"
 end
 
@@ -154,10 +166,16 @@ end
   def game_over?(active_game_id)
     game = ActiveGame.find(active_game_id)
     game.players.each do |player|
-      if player.player.player_health <= 0
+      health = player.player_health
+      deck_size = ActiveCard.where("player_id = ?", player.id).where("status = 'deck'")
+      if deck_size.count <= 0
+        return true
+      elsif health <= 0
         return true
       end
     end
+    puts "game is in session"
+    return false
   end
 
 def create_game(game_id)

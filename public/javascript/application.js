@@ -2,12 +2,16 @@ $(document).ready(function(){
 
 var pusher = new Pusher('80f3b1aa27d8fa8bf3de');
 
-var nextplayerChannel = pusher.subscribe('notifications');
+var gameChannel = pusher.subscribe('notifications');
 
-nextplayerChannel.bind('new_notification', function(notification){
+gameChannel.bind('new_notification', function(notification){
     // var message = notification.message;
     // $('div.hm').text(message);
     location.reload();
+});
+
+gameChannel.bind('game_over', function(notification){
+    window.location.replace("/game_over");
 });
 
 var nextPlayer = function(){
