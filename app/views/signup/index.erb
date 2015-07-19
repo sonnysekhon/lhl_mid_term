@@ -1,23 +1,26 @@
-<form method="post" action="/signup">
-  <div>
-    <label>Name:</label>
-    <input type="text" name="name" placeholder="name">
+<div class="valign-wrapper">
+<div class="row">
+<form  class="col s12" method="post" action="/signup">
+<h3 class="valign"> Signup:</h3>
+  <div class="row input-field col s6">
+   
+    <input type="text" name="name" placeholder="Name">
   </div>
-  <div>
-    <label>Email:</label>
-    <input type="text" name="email" placeholder="email">
+  <div class="row input-field col s6">
+    
+    <input type="text" name="email" placeholder="Email">
   </div>
-  <div>
-    <label>Password:</label>
-    <input type="password" name="password" placeholder="password">
+  <div class="row input-field col s6">
+    
+    <input type="password" name="password" placeholder="Password">
   </div>
-  <div>
-    <label>Avatar:</label>
-    <input type="text" name="avatar">
+  <div class="row input-field col s6">
+    
+    <input type="text" name="avatar" placeholder="Avatar">
   </div>
-  <h3></h3>
-  <div>
-    <input type="submit" value="Submit">
-  </div>
-  
+
+    <button class="waves-effect waves-light btn red lighten-2" type="submit" value="Submit">Submit</button>
+
 </form>
+</div>
+</div>
