@@ -1,28 +1,25 @@
-
+<a href="/dash"> <button class="waves-effect waves-light btn ">BACK</button></a>
 <div class="container">
-  <a href="/dash"> 
-    <br>
-    <button class="waves-effect waves-light btn amber accent-3">BACK</button>
-    <br> 
-  </a>
-    <div class="card container hoverable">
-      <div class="card-content black-text">
-        <span class="card-title teal-text">Game info</span>
-        <p>Title: <%= @a_game.title%></p>
-        <p>Player Health: <%= @a_game.health%></p>
-        <p>Number of cards in deck: <%= @a_game.deck_size%></p>
-        <p>Number of Card on player Hand: <%= @a_game.hand_size%></p>
-      </div>
+  <div class="card container hoverable">
+    <div class="card-content black-text">
+      <span class="card-title teal-text">Game info</span>
+      <p>Title: <%= @a_game.title%></p>
+      <p>Player Health: <%= @a_game.health%></p>
+      <p>Number of cards in deck: <%= @a_game.deck_size%></p>
+      <p>Number of Card on player Hand: <%= @a_game.hand_size%></p>
     </div>
-  <p>
-    <a href="/game/<%= @a_game.id %>/edit">
-      <button class="waves-effect waves-light btn amber accent-3">Edit Game</button>
-    </a>
-  </p>
+  </div>
+  <div class="row">
+    <div class="col s2"><a href="/game/<%= @a_game.id %>/edit">
+      <button class="waves-effect waves-light btn amber accent-3">Edit Game</button></a>
+    </div>
+    <div class="col s2"><a href="/game/<%= @a_game.id %>/play"><button class="waves-effect waves-light btn amber accent-3">PLAY</button></a>
+    </div>
+  </div>
   <h2 class="flow-text">Cards</h2>
   <p>
     <a href="/game/<%= @a_game.id %>/cards/new">
-      <button class="waves-effect waves-light btn amber accent-3">Create new card </button>
+    <button class="waves-effect waves-light btn amber accent-3">Create new card</button>
     </a>
   </p>
     <table class="container card hoverable striped">
@@ -46,7 +43,7 @@
           <td>
             <a href="/game/<%= card.game_id %>/cards/<%= card.id %>/edit">
               <button class="waves-effect waves-light btn amber accent-3">
-                Edit card 
+                Edit card
               </button>
             </a>
           </td>

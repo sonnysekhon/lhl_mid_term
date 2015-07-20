@@ -1,6 +1,7 @@
 <% if current_user %>
+  <br>
   <div class="container">
-  <h4 class ="flow-text">Your Game Library:</h4>
+  <h3>Your Game Library:</h3>
   <hr>
     <div class="row">
       <div class="col s12 m12 ">
@@ -26,7 +27,7 @@
         </div>
         <div class="card-action amber accent-3">
           <% if game.cards != []%>
-            <a style="color: white;"href="/game/<%= game.id %>/play">PLAY<a> 
+            <a style="color: white;"href="/game/<%= game.id %>/play">PLAY<a>
             <a style="color: white;"href="/game/<%= game.id%>">VIEW<a>
           <% else %>
             <a style="color: white;"href="/game/<%= game.id%>">VIEW<a>
