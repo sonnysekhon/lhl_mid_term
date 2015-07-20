@@ -1,7 +1,7 @@
-Sinatra
+QARD
 =============
 
-Brought to you by Lighthouse Labs
+Online Card Game Builder
 
 ## Getting Started
 
