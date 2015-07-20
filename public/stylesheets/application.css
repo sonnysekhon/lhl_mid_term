@@ -1,3 +1,7 @@
+.attack_input {
+   border-radius: 3px;
+   border: 0px;
+}
 .splash_img {
    position:fixed;
    left:0px;

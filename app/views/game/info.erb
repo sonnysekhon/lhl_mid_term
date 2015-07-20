@@ -31,6 +31,7 @@
           <th class ="center teal-text">Name</th>
           <th class ="center teal-text">Attack Power</th>
           <th class ="center teal-text">Defense</th>
+          <th class ="center teal-text">Picture</th>
           <th></th>
         </tr>
       </thead>
@@ -40,6 +41,8 @@
           <td class ="center"><%= card.name %></td>
           <td class ="center"><%= card.attack %></td>
           <td class ="center"><%= card.defense %></td>
+          <td class ="center">
+            <img src="/<%= card.picture %>" height="50" width="50">
           <td>
             <a href="/game/<%= card.game_id %>/cards/<%= card.id %>/edit">
               <button class="waves-effect waves-light btn amber accent-3">

@@ -1,21 +1,23 @@
   <div>
-    <label>Name:</label>
+    <br>
+    <label class="flow-text">Name:</label>
     <input type="text" name="name" value="<%= @a_card.name%>">
   </div>
   <div>
-    <label>Picture:</label>
+    <label class="flow-text">Picture:</label>
     <input type="text" name="picture" value="<%= @a_card.picture%>">
   </div>
   <div>
-    <label>Attack Power:</label>
+    <label class="flow-text">Attack Power:</label>
     <p class="range-field">
       <input type="range" name="attack" value="<%= @a_card.attack%>" min="0" max="4" />
     </p>
   </div>
   <div>
-    <label>Defense:</label>
+    <label class="flow-text">Defense:</label>
     <p class="range-field">
       <input type="range" name="defense" value="<%= @a_card.defense%>" min="0" max="4" />
     </p>
   </div>
+  <br>
   <div><button class="waves-effect waves-light btn amber accent-3" type="submit" value="Submit">Submit</button></div>
