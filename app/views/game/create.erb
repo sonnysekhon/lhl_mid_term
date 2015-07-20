@@ -1,28 +1,30 @@
 
 <div class='container'>
+<br>
   <form method="post" action="/game/create">
     <div>
-      <label>Game Title:</label>
+      <label class="flow-text">Game Title:</label>
       <input type="text" name="title" value="">
     </div>
     <div>
-      <label>Health:</label>
+      <label class="flow-text">Health:</label>
       <p class="range-field">
         <input type="range" name="health" value="0" min="0" max="20" />
       </p>
     </div>
     <div>
-      <label>Number of Cards in a deck:</label>
+      <label class="flow-text">Number of Cards in a deck:</label>
       <p class="range-field">
         <input type="range" name="deck_size" value="0" min="0" max="50" />
       </p>
     </div>
     <div>
-      <label>Number of Cards on hand:</label>
+      <label class="flow-text">Number of Cards on hand:</label>
       <p class="range-field">
        <input type="range" name="hand_size" value="0" min="0" max="10" />
       </p>
     </div>
+    <br>
     <div><button class="waves-effect waves-light btn amber accent-3" type="submit" value="Submit">Submit</button></div>
   </form>
 </div>

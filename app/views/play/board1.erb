@@ -34,7 +34,7 @@
       <% board = show_board(@activegame.player2_id)%>
       <div class="row">
       <% board.each do |card| %>
-        <div class="col s1">
+        <div class="col s2">
           <div class="card  red darken-3">
             <div class="card-content white-text">
               <center>
@@ -52,7 +52,7 @@
     <div class="col-md-12" id='player_board'>
       <% board = show_board(@activegame.player1_id)%>
       <% board.each do |card| %>
-        <div class="col s1">
+        <div class="col s2">
           <div class="card green darken-2">
             <div class="card-content white-text">
               <center>
@@ -66,7 +66,7 @@
         </div>
     <% end %>
     </div>
-  <input type="submit" value="Attack!">
+  <input class="amber accent-3 attack_input" type="submit" value="Attack!">
   </form>
 </div>
 
@@ -77,14 +77,14 @@
     <form action="/player1/play_card" method="POST">
       <% hand = show_hand(@activegame.player1_id)%>
       <% hand.each do |card| %>
-        <div class="col s1">
+        <div class="col s2">
           <div class="card blue-grey lighten-1">
             <div class="card-content white-text">
               <center>
               <img src="/<%= Card.find(card[1]).picture %>" height="50" width="50">
               <p><%= Card.find(card[1]).name %></p>
               <p><%= ActiveCard.find(card[0]).attack %>/<%= ActiveCard.find(card[0]).health %></p>
-              <p><button class ="hidden_btn" name ="card" type="submit" value ="<%= card[0] %>">SELECT</button></p>
+              <p><button class ="waves-effect waves-light btn amber accent-3 hidden_btn" name ="card" type="submit" value ="<%= card[0] %>">SELECT</button></p>
               </center>
             </div>
           </div>
@@ -100,10 +100,10 @@
     <center>
     <h5 class="card-content white-text"><%= current_user.name %> || Health: <%= player_health(@activegame.player1_id)%> || Deck Size: <%= deck_size(@activegame.player1_id)%></h5>
     <form method="post" action='/board/<%=@id %>/player1/draw'>
-      <button name="player_id" type="submit" value="<%= @activegame.player1_id %>">DRAW CARD</button>
+      <button class ="waves-effect waves-light btn amber accent-3" name="player_id" type="submit" value="<%= @activegame.player1_id %>">DRAW CARD</button>
     </form>
     <br>
-    <button class="finish_turn" type="submit" name="active_game_id" value="<%= @id %>">FINISH TURN</button>
+    <button class="waves-effect waves-light btn amber accent-3 finish_turn" type="submit" name="active_game_id" value="<%= @id %>">FINISH TURN</button>
     </center>
   </div>
 </div>
