@@ -10,11 +10,11 @@
 <% @activegame = ActiveGame.find(@id) %>
 
 <!-- ENEMY STATS -->
-
+<form id="attackForm" method="post" action='/board/<%=@id %>/player1/attack'>
 <div class="row" id="hud">
   <div class="card-panel red " id="enemy_name">
     <center>
-    <h5 class="card-content white-text"><%= current_user.name %> || Health: <%= player_health(@activegame.player2_id)%> || Deck Size: <%= deck_size(@activegame.player2_id)%></h5>
+    <h5 class="card-content white-text">Enemy Player || Health: <%= player_health(@activegame.player2_id)%> || Deck Size: <%= deck_size(@activegame.player2_id)%></h5>
     <% hand = show_hand(@activegame.player2_id)%>
     <% hand.each do |card| %>
       <button class ="hidden_btn" name ="card" type="submit" value ="<%= card[0] %>">
@@ -29,7 +29,7 @@
 <!-- GAME BOARD -->
 
 <div class="row" id="board">
-  <form id="attackForm" method="post" action='/board/<%=@id %>/player1/attack'>
+
     <div class="col-md-12" id='enemy_board'>
       <% board = show_board(@activegame.player2_id)%>
       <div class="row">
