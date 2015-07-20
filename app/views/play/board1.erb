@@ -14,6 +14,7 @@
 <div class="row" id="hud">
   <div class="card-panel red " id="enemy_name">
     <center>
+    <input name="target" type="radio" value="p<%= @activegame.player2_id %>" />
     <h5 class="card-content white-text">Enemy Player || Health: <%= player_health(@activegame.player2_id)%> || Deck Size: <%= deck_size(@activegame.player2_id)%></h5>
     <% hand = show_hand(@activegame.player2_id)%>
     <% hand.each do |card| %>
@@ -41,7 +42,7 @@
               <img src="/<%= Card.find(card[1]).picture %>" height="50" width="50">
               <p><%= Card.find(card[1]).name %></p>
               <p><%= ActiveCard.find(card[0]).attack %>/<%= ActiveCard.find(card[0]).health %></p>
-              <p><input name="target" type="radio" value="<%= card[0] %>" /></p>
+              <p><input name="target" id="card" type="radio" value="<%= card[0] %>" /></p>
               </center>
             </div>
           </div>

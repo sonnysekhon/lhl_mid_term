@@ -29,6 +29,7 @@ post '/board/:id/player1/attack' do
   @attacker = params[:attacker]
   @target = params[:target]
   fight(@attacker, @target)
+  clear_board(@active_game_id)
   redirect to("board/#{@active_game_id}/player1")
 end
 
@@ -37,6 +38,7 @@ post '/board/:id/player2/attack' do
   @attacker = params[:attacker]
   @target = params[:target]
   fight(@attacker, @target)
+  clear_board(@active_game_id)
   redirect to("board/#{@active_game_id}/player2")
 end
 
@@ -119,12 +121,22 @@ end
 
   def fight(attacker_id, target_id)
     attacker = ActiveCard.find(attacker_id)
-    target = ActiveCard.find(target_id)
-    if attacker.status == 'board' && target.status == 'board'
-      target.health -= attacker.attack
-      attacker.health -= target.attack
-      target.save
-      attacker.save
+    if !!(target_id =~ /^p/)
+      target_id.slice!(0)
+      target = Player.find(target_id)
+      if attacker.status == 'board'
+        target.player_health -= attacker.attack
+        target.save
+        attacker.save
+      end
+    elsif
+      target = ActiveCard.find(target_id)
+      if attacker.status == 'board' && target.status == 'board'
+        target.health -= attacker.attack
+        attacker.health -= target.attack
+        target.save
+        attacker.save
+      end
     else
       false
     end
